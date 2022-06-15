@@ -1,0 +1,34 @@
+//------------------Header ---------------------
+.header {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 10rem;
+  background-color: #f9faf8;
+  border-bottom: 0.1rem solid map-get($color-mod, vertWhite);
+  &__nameHead {
+    margin: 0 10rem;
+    font-style: italic;
+    font-weight: 800;
+    color: map-get($color-mod, vertDark);
+  }
+  button {
+    position: absolute;
+    color: map-get($color-mod, vertDark);
+     background-color: $color-background;
+    border-radius: 1.5rem;
+    border: 0.1rem solid map-get($color-mod, vertMed);
+    padding: 1.4rem 2rem;
+    right: 3rem;
+    transition: 0.2s;
+    &:hover {
+      color: map-get($color-mod, vertDark);
+      font-style: italic;
+      border: 0.1rem solid map-get($color-mod, vertWhite);
+      background-color: map-get($color-mod, vertGris);
+    }
+  }
+}

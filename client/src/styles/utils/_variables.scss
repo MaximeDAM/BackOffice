@@ -1,0 +1,48 @@
+//------------------Variables ---------------------
+
+//------------------General---------------------
+$color-primary: #00162c;
+$color-secondary: green;
+$color-tertiary: #ae0f0f;
+$color-accent: #fff;
+$color-background: #fdfdfd;
+$color-error: #B16679;
+
+$color-mod: (
+  vertGris: #EEF7E9,
+  vertWhite: #cfe4c1,
+  vertLight: #b7d4a2,
+  vertMed: #90ba71,
+  vertDark: #587D3D,
+);
+
+$font-size: (
+  big: 4rem,
+  medium: 1.7rem,
+  normal: 1rem,
+  small: 0.5rem,
+);
+
+//------------------Menu Burger---------------------
+$backgroundColorMenu: rgba(#000, 70%);
+//------------------Header---------------------
+//------------------Article ---------------------
+$colorArticle: #fff;
+$backgroundColorArticle: rgba(#000, 80%);
+
+//------------------Aside ---------------------
+$colorAside: #fff;
+$backgroundColorAside: rgba(#000, 77%);
+$colorArrow: #fff;
+
+//------------------Footer---------------------
+$backgroundColorFoot: rgba(#000, 90%);
+
+//------------------Responsive---------------------
+
+$breakpoints: (
+  mobile: 480px,
+  tablette: 768px,
+  Landtop: 1024px,
+  desktop: 1200px,
+);

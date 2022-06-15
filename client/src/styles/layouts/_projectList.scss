@@ -1,0 +1,34 @@
+//------------------ProjectList---------------------
+.project-grid-container {
+  background-color: #c7d5d0;
+  border-bottom: 0.1rem solid black;
+  display: grid;
+  gap: 4rem;
+  grid-template-areas: "preProject titleProject dateProject actProject";
+  .grid-item-project {
+    display: flex;
+    margin: 2rem 0;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .preProject {
+    grid-area: preProject;
+    min-width: 20rem;
+    img {
+      max-width: 20rem;
+    }
+  }
+  .titleProject {
+    grid-area: titleProject;
+    min-width: 20rem;
+  }
+  .dateProject {
+    grid-area: dateProject;
+    min-width: 21rem;
+  }
+  .actProject {
+    grid-area: actProject;
+    min-width: 28rem;
+  }
+}

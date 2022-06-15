@@ -1,0 +1,18 @@
+//------------------Mixins---------------------
+@mixin absolute {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin color-mod($colors) {
+  @each $state, $color in $colors {
+    .article__heading--/*colour name goes here*/ {
+      color: map-get($color);
+    }
+  }
+}

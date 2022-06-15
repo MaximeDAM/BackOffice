@@ -1,0 +1,34 @@
+//------------------Article---------------------
+.article {
+  width: 80%;
+   margin-top: 5rem;
+  margin: 5rem auto 0 auto;
+  padding: 0;
+  .projectList {
+    margin: 0 auto;
+    width: 70%;
+    padding: 3rem;
+    background-color: #c7d5d0;
+    border-radius: 1.5rem;
+  }
+      button {
+      padding: 1.4rem 2.5rem;
+      border-radius: 1.5rem;
+      background-color: #4b826f;
+      color: #c7d5d0;
+      transition: 0.2s;
+      &:hover {
+        color: #4b826f;
+        background-color: #f0f2f1;
+      }
+    }
+  .tabProject {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    align-items: center;
+    button {
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+  }
+}

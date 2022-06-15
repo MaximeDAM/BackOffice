@@ -1,0 +1,66 @@
+//------------------SignIn---------------------
+.signIn-container {
+  margin-top: 10rem;
+  width: 40%;
+  border-radius: 1.5rem;
+  background-color: map-get($color-mod, vertWhite);
+  text-align: center;
+  &__form {
+    display: flex;
+    padding: 3rem;
+    flex-direction: column;
+    gap: 3rem;
+    width: 75%;
+    margin: 0 auto;
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    input {
+      width: 25rem;
+      border-radius: 1.5rem;
+      padding: 1.4rem 2rem;
+      background: $color-background;
+    }
+    input[type="submit"] {
+      width: 20rem;
+      margin-right: 3.5rem;
+      align-self: end;
+      cursor: pointer;
+      transition: 0.2s;
+      background-color: map-get($color-mod, vertLight);
+      color: map-get($color-mod, vertDark);
+      &:hover {
+        background-color: map-get($color-mod, vertMed);
+        color: map-get($color-mod, vertWhite);
+      }
+    }
+  }
+  ul {
+    display: flex;
+    padding: 2rem;
+    gap: 1rem;
+  }
+  li {
+    border-radius: 1.5rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: 0.2s;
+    &:not(.active-btn):hover {
+      transform: translateX(0.3rem);
+    }
+  }
+  .active-btn {
+    background-color: map-get($color-mod, vertMed);
+    &:hover {
+      background-color: map-get($color-mod, vertLight);
+    }
+  }
+  .password-error {
+    color: $color-error;
+     align-self: end;
+     margin-right: -1.1rem;
+
+  }
+}

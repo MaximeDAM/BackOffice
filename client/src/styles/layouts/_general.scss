@@ -1,0 +1,48 @@
+//------------------General---------------------
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+* {
+  font-family: "Cream", sans-serif;
+  font-size: map-get($font-size, medium);
+  list-style-type: none;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-size: map-get($font-size, medium);
+  margin: 0;
+  padding: 0;
+  color: $color-primary;
+  background: #fdfdfd;
+}
+h2 {
+  font-size: map-get($font-size, medium);
+  text-align: center;
+}
+
+h3 {
+  font-size: map-get($font-size, meidum);
+  font-weight: normal;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  background: none;
+}
