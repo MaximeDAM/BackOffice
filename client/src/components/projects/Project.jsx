@@ -14,11 +14,11 @@ const Project = ({ title, date, image, onDelete }) => {
  
   return (
     <div className="project-grid-container">
-      <div className="grid-item-project preProject">
-        <img src={image} alt="preview" />
-      </div>
       <div className="grid-item-project titleProject ">
         <h3>{title}</h3>
+      </div>
+      <div className="grid-item-project preProject">
+        <img src={image} alt="preview" />
       </div>
       <div className="grid-item-project dateProject">
         <p>{dateFormated}</p>

@@ -14,13 +14,14 @@ const App = () => {
     })
       .then((res) => {
         setUid(res.data)
-        setLoading(false)
       })
       .catch((err) => {
         setLoading(false)
         console.log("No token");
-      });
-      
+      })
+      .finally(() => { 
+      setLoading(false)
+      })
          }, [uid]);
 
 /*   setTimeout(() => {

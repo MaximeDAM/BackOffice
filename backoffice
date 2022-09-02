@@ -1,0 +1,17 @@
+BackOffice de creation de projets
+
+HOME (non  authentifié) => redirige vers /register myre d'authentification
+
+HOME  (authentifié) => Recuperation données fichier projets et affichages des projets dans le tableau suivant :
+
+| Preview | Titre | Date d'ajout | Actions |
+|-----------|------|----------------|----------|
+| Image | Mon projet | 01/01/2021 | Editer / Supprimer |
+
+Bouton nouveau Projet
+
+FORMULAIRE =>  * titre
+				* description
+				* un champ permettant d'uploader une image : `<input type="file">`
+
+Creer, Editer, Modifier et Supprimer un projet

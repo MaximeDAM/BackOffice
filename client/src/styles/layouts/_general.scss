@@ -5,6 +5,7 @@ html {
 }
 
 * {
+  box-sizing: border-box;
   font-family: "Cream", sans-serif;
   font-size: map-get($font-size, medium);
   list-style-type: none;

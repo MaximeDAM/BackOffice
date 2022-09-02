@@ -13,16 +13,20 @@ const SignUp = () => {
     if (password !== confirmPassword) {
 document.querySelector(".password-error").innerHTML = "Les mots de passe ne correspondent pas"
     } else {
-      axios
-        .post(`${process.env.REACT_API_URL}/register`, {
+      axios({
+        method: "post",
+        url: `${process.env.REACT_APP_API_URL}/api/user/register`,
+        data: {
           pseudo,
           email,
           password,
+        },
         })
         .then((res) => {
           console.log(res);
         })
         .catch((err) => {
+          console.log("test erreur");
           console.log(err);
         });
     }

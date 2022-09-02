@@ -6,17 +6,12 @@ module.exports.signUp = async (req, res) => {
   const { pseudo, email, password } = req.body;
 
   const salt = await bcrypt.genSalt();
+  const hash = await   bcrypt.hash(password, salt);
+  const newUser = new user_models({ pseudo, email, password: hash });
 
-  bcrypt
-    .hash(password, salt)
-    .then((hash) => {
-      const newUser = new user_models({ pseudo, email, password: hash });
-      newUser
-        .save()
+      newUser.save()
         .then((userRes) => res.status(200).json(userRes))
         .catch((err) => res.status(400).send(err));
-    })
-    .catch((err) => res.status(400).send(err));
 };
 
 module.exports.signIn = async (req, res) => {
@@ -68,14 +63,14 @@ module.exports.signIn = async (req, res) => {
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: 60 * 1000,
-      SameSite: "lax",
+      SameSite: "Lax",
     });
 
     //storing cookie refreshToken
     res.cookie("jwtR", refreshToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 12 * 1000,
-      SameSite: "lax",
+      SameSite: "Lax",
     });
     res.status(200).send({ user: user._id, token, refreshToken });
   } catch (err) {

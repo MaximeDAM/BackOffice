@@ -3,7 +3,7 @@ const project_models = require("../models/project_model")
 module.exports.createProject = (req, res) => {
     const newProject = new project_models({
         title: req.body.title,
-        picture: req.file != null ? `.uploads/projects/${req.body.title + Date.now()}.jpg` : ""
+        picture: req.file !== null ? `.uploads/projects/${req.body.title + Date.now()}.jpg` : ""
     })
 
     const project = newProject.save()

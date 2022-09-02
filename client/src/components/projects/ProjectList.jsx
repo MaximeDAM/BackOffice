@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from "react";
-import Project from "./Project";
-import randomUser from "../../styles/assets/img/random-user.png";
-import axios from "axios";
+import React, { useEffect, useState } from "react"
+import Project from "./Project"
+import randomUser from "../../styles/assets/img/random-user.png"
+import axios from "axios"
+import FormNewProject from "./FormNewProject"
 
 const ProjectList = () => {
-  const [projectList, setProjectList] = useState([]);
-  const [projectChange, setProjectChange] = useState(true);
-  const image = randomUser;
+  const [projectList, setProjectList] = useState([])
+  const [projectChange, setProjectChange] = useState(true)
+  const [newProject, setNewProject] = useState(false)
+  const image = randomUser
+
+  const handleFormNewProject = () => {
+    setNewProject(true)
+  }
 
   const handleDelete = (id) => {
     const confirmation = window.confirm(
       "Voulez vous vraiment supprimer ce projet ?"
-    );
+    )
 
     if (confirmation) {
       axios({
@@ -20,11 +26,11 @@ const ProjectList = () => {
         withCredentials: true,
       })
         .then(() => {
-          setProjectChange(!projectChange);
+          setProjectChange(!projectChange)
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     }
-  };
+  }
 
   useEffect(() => {
     axios({
@@ -33,18 +39,23 @@ const ProjectList = () => {
       withCredentials: true,
     })
       .then((res) => {
-        setProjectList(res.data);
+        setProjectList(res.data)
       })
       .catch((err) => {
-         window.location = "/";
-        console.log(err);
-      });
-  }, [projectChange]);
+        window.location = "/"
+        console.log(err)
+      })
+  }, [projectChange])
 
   return (
     <div className="article">
       <div className="tabProject">
-        <button className="article__btnNewProject">Créer un nouveau projet</button>
+        <button
+          className="article__btnNewProject"
+          onClick={handleFormNewProject}
+        >
+          Créer un nouveau projet
+        </button>
       </div>
       <div className="projectList">
         <div className="project-grid-container">
@@ -71,11 +82,12 @@ const ProjectList = () => {
               key={item._id}
               onDelete={() => handleDelete(item._id)}
             />
-          );
+          )
         })}
       </div>
+      {newProject && <FormNewProject onCancel={() => setNewProject(false)} />}
     </div>
-  );
-};
+  )
+}
 
-export default ProjectList;
+export default ProjectList
