@@ -1,13 +1,15 @@
 const express = require("express")
 const router = express.Router()
-const postController = require("../controllers/project.controller")
+const controllers = require("../controllers/project.controller")
 
 
 //Posts
-router.post("/project", postController.createProject);
-router.get("/", postController.readProjects);
-router.delete("/project/:id", postController.deleteProject)
+router.post("/project", controllers.uploadImgProject.single("file"), controllers.createProject);
+router.get("/", controllers.readProjects);
+router.delete("/project/:id", controllers.deleteProject)
+router.put("/project/:id", controllers.editProject)
 
+//Uploads
 
 
 module.exports = router;

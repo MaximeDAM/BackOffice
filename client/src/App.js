@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useEffect, useState, createContext } from "react";
-import IndexRoutes from "./components/routes/IndexRoutes.jsx";
+import axios from "axios"
+import { useEffect, useState, createContext } from "react"
+import IndexRoutes from "./components/routes/IndexRoutes.jsx"
 
 const App = () => {
-  const [uid, setUid] = useState(null);
- const [loading, setLoading] = useState(true);
+  const [uid, setUid] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios({
@@ -17,25 +17,23 @@ const App = () => {
       })
       .catch((err) => {
         setLoading(false)
-        console.log("No token");
+        console.log("No token")
       })
-      .finally(() => { 
-      setLoading(false)
+      .finally(() => {
+        setLoading(false)
       })
-         }, [uid]);
+  }, [uid])
 
-/*   setTimeout(() => {
+  /*   setTimeout(() => {
         setLoading(false)
   },300); */
 
-
-
   return (
     <UidContext.Provider value={uid}>
-      <IndexRoutes loading={loading}/>
+      <IndexRoutes loading={loading} />
     </UidContext.Provider>
-  );
-};
+  )
+}
 
-export default App;
-export const UidContext = createContext();
+export default App
+export const UidContext = createContext()

@@ -22,10 +22,19 @@
   .titleProject {
     grid-area: titleProject;
     min-width: 20rem;
+    input {
+      max-width: 20rem;
+      text-align: center;
+      padding: 1.4rem;
+      border-radius: 1.5rem;
+    }
   }
   .dateProject {
     grid-area: dateProject;
     min-width: 21rem;
+    p {
+      text-align: center;
+    }
   }
   .actProject {
     grid-area: actProject;

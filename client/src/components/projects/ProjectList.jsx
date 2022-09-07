@@ -14,11 +14,14 @@ const ProjectList = () => {
     setNewProject(true)
   }
 
+  const handleProjectChange = () => {
+    setProjectChange(!projectChange)
+  }
+
   const handleDelete = (id) => {
     const confirmation = window.confirm(
       "Voulez vous vraiment supprimer ce projet ?"
     )
-
     if (confirmation) {
       axios({
         method: "delete",
@@ -66,7 +69,7 @@ const ProjectList = () => {
             <h2>Titre</h2>
           </div>
           <div className="grid-item-project dateProject">
-            <h2>Date d'ajout</h2>
+            <h2>Date d'ajout ou d'édition</h2>
           </div>
           <div className="grid-item-project actProject">
             <h2>Actions</h2>
@@ -78,14 +81,21 @@ const ProjectList = () => {
             <Project
               title={item.title}
               date={item.updatedAt}
-              image={image}
+              image={item.picture || image}
               key={item._id}
+              idProject={item._id}
               onDelete={() => handleDelete(item._id)}
+              onActiveChange={() => handleProjectChange()}
             />
           )
         })}
       </div>
-      {newProject && <FormNewProject onCancel={() => setNewProject(false)} />}
+      {newProject && (
+        <FormNewProject
+          onCancel={() => setNewProject(false)}
+          changeRefresh={() => setProjectChange(!projectChange)}
+        />
+      )}
     </div>
   )
 }

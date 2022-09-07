@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "PORT=4550 react-scripts start ",
-    "dev": " (cd ../back && npm run start) & PORT=4550 react-scripts start ",
+    "dev": " (cd ../back && npm run start) & (xfce4-terminal -x bash -c 'PORT=4550 react-scripts start') ",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

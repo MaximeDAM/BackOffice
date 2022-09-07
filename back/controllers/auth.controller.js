@@ -114,12 +114,11 @@ module.exports.checkRefreshToken = (req, res, next) => {
   }
 };
 module.exports.requireAuth = (req, res, next) => {
-  const token = req.cookies.jwt;
+  const token = req.cookies.jwtR;
   if (token) {
-    jwt.verify(token, process.env.PUBLIC_KEY, async (err, decoded) => {
+    jwt.verify(token, process.env.PUBLIC_REFRESH_KEY, async (err, decoded) => {
       if (err) {
-        res.cookie("jwt", "", { maxAge: 1 });
-
+        res.cookie("jwtR", "", { maxAge: 1 });
         res.status(403).send("Invalid token");
       } else {
         console.log(decoded.id);
@@ -130,5 +129,6 @@ module.exports.requireAuth = (req, res, next) => {
   } else {
     console.log("no token");
     return res.status(401).json("No token");
+   
   }
 };

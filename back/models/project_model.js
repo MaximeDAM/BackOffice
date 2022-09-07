@@ -3,6 +3,10 @@ const schema = mongoose.Schema;
 
 const projectSchema = new schema(
     {
+        creatorId: {
+            type: String,
+            required: true
+        },
         title: {
             type: String,
             minLength: 1,
