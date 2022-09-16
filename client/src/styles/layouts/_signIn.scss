@@ -16,6 +16,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      text-align: left;
     }
     input {
       width: 25rem;
@@ -59,8 +60,7 @@
   }
   .password-error {
     color: $color-error;
-     align-self: end;
-     margin-right: -1.1rem;
-
+    align-self: end;
+    margin-right: -1.1rem;
   }
 }

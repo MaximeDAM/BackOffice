@@ -1,9 +1,19 @@
 import axios from "axios"
 import React, { useState } from "react"
-const Project = ({ idProject, title, date, image, onDelete, onActiveChange }) => {
+import FormEditImgProject from "./FormEditImgProject"
+const Project = ({
+  idProject,
+  title,
+  date,
+  image,
+  onDelete,
+  onActiveChange,
+}) => {
   const [editIsActive, setEditIsActive] = useState(false)
-  const [editFormIsActive, setEditFormIsActive] = useState(false)
+  const [editFormIsActive, setEditImgIsActive] = useState(false)
   const [titleEdit, setTitleEdit] = useState("")
+  const [urlFile, setUrlFile] = useState()
+  const [file, setFile] = useState()
   let options = {
     hour: "2-digit",
     minute: "2-digit",
@@ -16,29 +26,68 @@ const Project = ({ idProject, title, date, image, onDelete, onActiveChange }) =>
   const num = Date.parse(date)
   const dateFormated = new Date(num).toLocaleDateString("fr-FR", options)
 
+  const handleCancel = () => {
+    setUrlFile(null)
+    setFile(null)
+    setEditIsActive(false)
+  }
   const handleEdit = () => {
     setEditIsActive(true)
   }
   const handleValidEdit = () => {
+    const titleEdited = titleEdit ? titleEdit : null
+    const picture = file ? `./uploads/projects/${file.name}` : null
+    console.log(picture)
+    console.log(titleEdited)
+    const data = {}
+    if (picture) {
+      data.picture = picture
+    }
+    if (titleEdited) {
+      data.titleEdited = titleEdited
+      console.log("test title")
+    }
     axios({
-      method: "put",
+      method: "patch",
       url: `${process.env.REACT_APP_API_URL}/api/projects/project/${idProject}`,
       withCredentials: true,
-      data: {
-        titleEdit,
-      },
+      data,
     })
       .then((res) => {
         console.log(res)
-         setEditIsActive(false)
-         onActiveChange()
+        if (!file) {
+          setEditIsActive(false)
+          onActiveChange()
+        } else {
+          axios({
+            method: "post",
+            url: `${process.env.REACT_APP_API_URL}/api/projects/project/${idProject}`,
+            withCredentials: true,
+            headers: {
+              "content-type": "multipart/form-data",
+            },
+            data: {
+              file,
+            },
+          })
+            .then((res) => {
+              console.log(res)
+              setEditIsActive(false)
+              onActiveChange()
+            })
+            .catch((err) => {
+              console.log(err)
+              console.log("error file")
+            })
+        }
       })
       .catch((err) => {
         console.log(err)
+        console.log("error path picture")
       })
   }
   const handleOpenFormEdit = () => {
-     setEditIsActive(true)
+    setEditImgIsActive(true)
   }
 
   return (
@@ -70,16 +119,34 @@ const Project = ({ idProject, title, date, image, onDelete, onActiveChange }) =>
             />
           </div>
           <div className="grid-item-project preProject">
-            <button onClick={handleOpenFormEdit} className="btn-img-project" type="button">
-              <img src={image} alt="preview" />
+            <button
+              onClick={handleOpenFormEdit}
+              className="btn-img-project"
+              type="button"
+            >
+              <img src={urlFile || image} alt="preview" />
             </button>
+            {editFormIsActive && (
+              <FormEditImgProject
+                urlFile={urlFile}
+                image={image}
+                idProject={idProject}
+                onCloseEditImg={() => setEditImgIsActive(false)}
+                onSetUrlFile={(e) =>
+                  setUrlFile(URL.createObjectURL(e.target.files[0]))
+                }
+                onSetUrlFileRemove={(e) => setUrlFile(null)}
+                onSetFileRemove={(e) => setFile(null)}
+                onSetFile={(e) => setFile(e.target.files[0])}
+              />
+            )}
           </div>
           <div className="grid-item-project dateProject">
             <p>{dateFormated}</p>
           </div>
           <div className="grid-item-project actProject">
-            <button onClick={() => setEditIsActive(false)}>Annuler</button>
-            <button onClick={handleValidEdit}>Valider</button>
+            <button onClick={handleCancel}>Annuler</button>
+            <button onClick={() => handleValidEdit()}>Valider</button>
           </div>
         </>
       )}

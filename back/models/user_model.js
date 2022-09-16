@@ -24,7 +24,7 @@ const projectSchema = new schema(
             type: String,
             required: true,
             maxLength: 500,
-            minlength: 6
+            minlength: 16
         },
         picture: {
             type: String,

@@ -27,7 +27,7 @@ const Signs = () => {
           Connection
         </li>
       </ul>
-      {signUpModal ? <SignUp /> : <SignIn />}
+      {signUpModal ? <SignUp onSignInModal={() => setSignUpModal(false)} /> : <SignIn />}
     </div>
   );
 };

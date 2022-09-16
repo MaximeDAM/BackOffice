@@ -18,7 +18,7 @@ const corOptions = {
 
 app.use(cors(corOptions));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true, limit: "1mb" })); 
 app.use(cookieParser());
 
 //Jwt

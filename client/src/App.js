@@ -24,10 +24,24 @@ const App = () => {
       })
   }, [uid])
 
-  /*   setTimeout(() => {
+  setInterval(() => {
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}/jwtid`,
+      withCredentials: true,
+    })
+      .then((res) => {
+        setUid(res.data)
+        console.log("refresh interval")
+      })
+      .catch((err) => {
         setLoading(false)
-  },300); */
-
+        console.log("No token")
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, 60000 * 12)
   return (
     <UidContext.Provider value={uid}>
       <IndexRoutes loading={loading} />

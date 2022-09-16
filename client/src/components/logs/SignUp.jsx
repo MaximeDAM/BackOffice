@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const SignUp = () => {
-  const [pseudo, setPseudo] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+const SignUp = ({ onSignInModal }) => {
+  const [pseudo, setPseudo] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
 
   const handleRegister = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (password !== confirmPassword) {
-document.querySelector(".password-error").innerHTML = "Les mots de passe ne correspondent pas"
+      document.querySelector(".password-error").innerHTML =
+        "Les mots de passe ne correspondent pas"
     } else {
       axios({
         method: "post",
@@ -21,16 +22,17 @@ document.querySelector(".password-error").innerHTML = "Les mots de passe ne corr
           email,
           password,
         },
-        })
+      })
         .then((res) => {
-          console.log(res);
+          onSignInModal()
+          console.log(res)
         })
         .catch((err) => {
-          console.log("test erreur");
-          console.log(err);
-        });
+          console.log("test erreur")
+          console.log(err)
+        })
     }
-  };
+  }
 
   return (
     <form
@@ -73,7 +75,7 @@ document.querySelector(".password-error").innerHTML = "Les mots de passe ne corr
       <p className="password-error"></p>
       <input type="submit" value="Validation" />
     </form>
-  );
-};
+  )
+}
 
 export default SignUp;

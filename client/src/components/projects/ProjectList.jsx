@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import Project from "./Project"
 import randomUser from "../../styles/assets/img/random-user.png"
 import axios from "axios"
 import FormNewProject from "./FormNewProject"
+import { UidContext } from "../../App"
 
 const ProjectList = () => {
   const [projectList, setProjectList] = useState([])
   const [projectChange, setProjectChange] = useState(true)
   const [newProject, setNewProject] = useState(false)
   const image = randomUser
+
+  const uid = useContext(UidContext)
 
   const handleFormNewProject = () => {
     setNewProject(true)
@@ -38,7 +41,7 @@ const ProjectList = () => {
   useEffect(() => {
     axios({
       method: "get",
-      url: `${process.env.REACT_APP_API_URL}/api/projects`,
+      url: `${process.env.REACT_APP_API_URL}/api/projects/${uid}`,
       withCredentials: true,
     })
       .then((res) => {
@@ -48,7 +51,7 @@ const ProjectList = () => {
         window.location = "/"
         console.log(err)
       })
-  }, [projectChange])
+  }, [projectChange, uid])
 
   return (
     <div className="article">
